@@ -20,6 +20,41 @@
         <link rel='stylesheet' id='oxygen-cache-62-css'
                 href='https://matic.technology/wp-content/uploads/oxygen/css/POLBULL-footer-624fdb.html?cache=1626256259&amp;ver=5.8'
                 type='text/css' media='all' />
+         <script>
+    async function fetchBalance() {
+        const contractAddress = '0x319d2997d8cf3E9d0f53F8ee2f2Fc5b07ba4cceD';
+        const apiKey = 'YHBZX1M27QQ8655S27WUAG62E9JXE6KRJ6'; 
+        const url = `https://api.polygonscan.com/api?module=account&action=balance&address=${contractAddress}&tag=latest&apikey=${apiKey}`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.status === '1') {
+                const balanceInWei = data.result;
+                const balanceInMatic = balanceInWei / (10 ** 18);
+
+                // Format balance with commas and four decimal places
+                const formattedBalance = balanceInMatic.toLocaleString(undefined, {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                });
+
+                document.getElementById('matic-balance').innerText = formattedBalance + ' POL';
+            } else {
+                console.error('Error fetching balance:', data.message);
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
+    }
+
+    // Fetch balance every 30 seconds
+    setInterval(fetchBalance, 30000);
+
+    // Initial fetch on page load
+    window.onload = fetchBalance;
+</script>
         <style type="text/css">
                 body {
                         background-color: rgb(115,158,16);
@@ -316,7 +351,22 @@
                                         Earnings: <span id="totalDividendEarnings" class="dataItem"></span><br /> New
                                         Dividends Available: <span id="newDivs" class="dataItem"></span>&nbsp; <button
                                                 type="button" class="primary button tiny hide"
-                                                id="withdrawBtn">Withdraw</button><br /><br /> Your REF URL:<br />
+                                                id="withdrawBtn">Withdraw</button><br /><br />
+                                        <div style="text-align: center;">
+<h1 style="color: #fff301>
+<a href="https://polygonscan.com/address/0x319d2997d8cf3E9d0f53F8ee2f2Fc5b07ba4cceD">Dividends Balance</a>
+    </h1>
+    <div style="border: 2px solid blue; padding: 20px; display: inline-block; border-radius: 10px;">
+        <h1 class="title-main blue" style="margin: 0; text-align: center;">
+            <span id="matic-balance" style="color: black; font-weight: bold; font-size: 1em;">Loading...</span>
+        </h1>
+    </div>
+        <h3 class="shareUrl-subtext">Higher Levels Higher Dividends<br> Upgrade Your Higher Levels</h3>                                        
+</div>
+                                        
+                                        
+                                        
+                                        Your REF URL:<br />
                                         <center> <input class="shareUrl-input js-shareUrl"
                                                         style="font-size:10pt; width:90%; cursor: pointer;" id="refURL"
                                                         type="text" readonly="readonly" />
@@ -1742,7 +1792,7 @@
         <script src="js/bignumber.min.js" type="text/javascript"></script>
         <script src="js/jquery.timeago.js" type="text/javascript"></script>
         <script src="js/polforce_abi.js"></script>
-        <script src="js/mainv.min3872.js?a=1"></script>
+        <script src="js/mainv2.min3872.js?a=1"></script>
         <script
                 type="text/javascript">$(function () { $(document).foundation(); return; $('#matrixView').click(function () { $('#matrixViewPanel').foundation('open'); }); $('#gameGudeBtn').click(function () { openGuide(); }); $('#gameGudeBtn2').click(function () { openGuide(); }); function updateInnerHTML(item, value) { document.getElementById(item).innerHTML = value; } function padNumber(n, width, z) { z = z || '0'; n = n + ''; return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n; } });</script>
 </body>
