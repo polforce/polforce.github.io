@@ -20,6 +20,27 @@
         <link rel='stylesheet' id='oxygen-cache-62-css'
                 href='https://matic.technology/wp-content/uploads/oxygen/css/POLBULL-footer-624fdb.html?cache=1626256259&amp;ver=5.8'
                 type='text/css' media='all' />
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .blink {
+            animation: blinker 1.5s linear infinite;
+            color: red;
+            font-size: 1.5em;
+            /* Larger, responsive font size */
+            margin-bottom: 20px;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
          <script>
     async function fetchBalance() {
         const contractAddress = '0x319d2997d8cf3E9d0f53F8ee2f2Fc5b07ba4cceD';
@@ -361,7 +382,7 @@
             <span id="matic-balance" style="color: black; font-weight: bold; font-size: 1em;">Loading...</span>
         </h1>
     </div>
-        <h3 class="shareUrl-subtext">Higher Levels Higher Dividends<br>Upgrade Your Higher Levels<br>Never Miss Life Time Income</h3>                                        
+        <p class="blink"><h3 class="shareUrl-subtext">Higher Levels Higher Dividends<br>Upgrade Your Higher Levels<br>Never Miss Life Time Income</h3></p>
 </div>
                                         
                                         
